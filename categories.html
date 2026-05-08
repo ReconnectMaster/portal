@@ -5,6 +5,52 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI Portal - AI Tools Catagories</title>
     <style>
+    .dropdown {
+        position: relative;
+        display: inline-block;
+    }
+
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: white;
+        min-width: 200px;
+        box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+        padding: 12px 16px;
+        z-index: 1;
+        border-radius: 4px;
+    }
+
+    .dropdown-content a {
+        color: black;
+        padding: 8px 0;
+        text-decoration: none;
+        display: block;
+    }
+
+    .dropdown-content a:hover {
+        color: #2563eb;
+    }
+
+    .dropdown:hover .dropdown-content {
+        display: block;
+    }
+
+    .dropdown-btn {
+        background-color: #f0f0f0;
+        padding: 10px 15px;
+        border: none;
+        cursor: pointer;
+        border-radius: 4px;
+    }
+
+    .dropdown-btn:hover {
+        background-color: #e0e0e0;
+    }
+        
+        
+        
+        
         * {
             margin: 0;
             padding: 0;
@@ -227,6 +273,22 @@
                 <button>🔍</button>
             </div>
         </nav>
+
+         <div class="dropdown">
+        <button class="dropdown-btn">📂 Jump to Category ▼</button>
+        <div class="dropdown-content">
+            <a href="#text-generation">📝 Text Generation</a>
+            <a href="#image-generation">🎨 Image Generation</a>
+            <a href="#video-editing">🎬 Video Editing</a>
+            <a href="#audio">🎬 Audio & Voice</a>
+            <a href="#automation">Automation Tools</a>
+            <a href="#marketing">Marketing Tools</a>
+            <a href="#graphic">Graphic Tools</a>
+            <a href="#web-app">Web-App Generation</a>
+            <a href="#database">Form & Database</a>
+            <a href="#domain">Domain Management</a>
+        </div>             
+    </div>
     </header>
 
     <!-- Main Content -->
@@ -234,32 +296,15 @@
         <h1 class="page-title">AI Tools Directory</h1>
         <p class="page-subtitle">A comprehensive spec of critical AI intelligences tools, grouped by category.</p>
 
-<!-- Dropdown menu at the top -->
-<select onchange="window.location.hash = this.value">
-    <option value="">-- Jump to Category --</option>
-    <option value="#text-generation">📝 Text Generation</option>
-    <option value="#image-generation">🎨 Image Generation</option>
-    <option value="#video-editing">🎬 Video Editing</option>
-    <option value="#audio">🎬 Audio & Voice</option>
-    <option value="#automation">Automation Tools</option>
-    <option value="#marketing">Marketing Tools</option>
-    <option value="#graphic">Graphic Tools</option>
-    <option value="#web-app">Web-App Generation</option>
-    <option value="#database">Form & Database</option>
-    <option value="#domain">Domain Management</option>
-</select>
-
-<!-- Sections with matching IDs -->
-<section id="text-generation" class="section">
-    <h2 class="section-title">📝 Text Generation</h2>
-    ...
-</section>
+        <!--
+        <section id="text-generation" class="section">
+            <h2 class="section-title">📝 Text Generation</h2>...
+        </section>
+        -->
 
 <section id="image-generation" class="section">
     <h2 class="section-title">🎨 Image Generation</h2>
     ...
-</section>
-
         
         <!-- Text Generation Section -->
         <section class="section">
