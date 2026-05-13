@@ -324,8 +324,8 @@
                 margin-top: 0;
             }
 
-            /* Remove hover behavior on mobile */
-            .dropdown:hover .dropdown-content {
+            /* Remove hover behavior on mobile - but respect the .show class */
+            .dropdown:hover .dropdown-content:not(.show) {
                 display: none;
             }
         }
