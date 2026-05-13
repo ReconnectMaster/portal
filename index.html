@@ -117,6 +117,10 @@
             margin-top: 8px;
         }
 
+        .dropdown-content.show {
+            display: block;
+        }
+
         .dropdown-content a {
             color: #333;
             padding: 12px 18px;
@@ -132,6 +136,7 @@
             border-left-color: #2563eb;
         }
 
+        /* Keep hover behavior for desktop */
         .dropdown:hover .dropdown-content {
             display: block;
         }
@@ -312,7 +317,6 @@
 
             .dropdown-content {
                 position: static;
-                display: none;
                 box-shadow: none;
                 border-radius: 0;
                 padding: 8px 0;
@@ -320,8 +324,9 @@
                 margin-top: 0;
             }
 
+            /* Remove hover behavior on mobile */
             .dropdown:hover .dropdown-content {
-                display: block;
+                display: none;
             }
         }
     </style>
@@ -335,8 +340,8 @@
             <button>🔍</button>
         </div>
         <div class="dropdown">
-            <button class="dropdown-btn">📂 Jump to Category ▼</button>
-            <div class="dropdown-content">
+            <button class="dropdown-btn" id="dropdownBtn">📂 Jump to Category ▼</button>
+            <div class="dropdown-content" id="dropdownContent">
                 <a href="#text-generation">📝 Text Generation</a>
                 <a href="#prompt-engineering">📌 Prompt Engineering</a>
                 <a href="#image-generation">🎨 Image Generation</a>
@@ -742,5 +747,39 @@
             <p>&copy; 2026 AI Portal. All rights reserved. | Designed with ❤️</p>
         </div>
     </footer>
+
+    <script>
+        // Dropdown toggle functionality
+        const dropdownBtn = document.getElementById('dropdownBtn');
+        const dropdownContent = document.getElementById('dropdownContent');
+
+        // Toggle dropdown on button click
+        dropdownBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            dropdownContent.classList.toggle('show');
+        });
+
+        // Close dropdown when clicking on a link
+        const dropdownLinks = dropdownContent.querySelectorAll('a');
+        dropdownLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                dropdownContent.classList.remove('show');
+            });
+        });
+
+        // Close dropdown when clicking outside (on mobile and desktop)
+        document.addEventListener('click', function(e) {
+            if (!e.target.closest('.dropdown')) {
+                dropdownContent.classList.remove('show');
+            }
+        });
+
+        // Prevent closing on mobile when opening dropdown content itself
+        dropdownContent.addEventListener('click', function(e) {
+            if (e.target.tagName === 'A') {
+                dropdownContent.classList.remove('show');
+            }
+        });
+    </script>
 </body>
 </html>
