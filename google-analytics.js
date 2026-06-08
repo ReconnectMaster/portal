@@ -5,7 +5,7 @@
  */
 
 const GoogleAnalytics = (() => {
-  const GA_MEASUREMENT_ID = 'G-540583980'; // Replace with your GA4 measurement ID
+  const GA_MEASUREMENT_ID = 'G-MCDYZG9RGF'; // Replace with your GA4 measurement ID
 
   /**
    * Initialize Google Analytics
