@@ -4,7 +4,7 @@ Promptpay QR -> https://promptpay2.me/
 Structure:
 "One Main Portfolio Repo with Subfolders"
 
-"""
+```text
 portal/
 │
 ├── index.html             ← Main landing page
@@ -14,8 +14,9 @@ portal/
 │   └── index.html
 ├── project-2/
 │   └── index.html
-...
-"""
+
+```
+
 
 How it works:
 - index.html is your main page with links to each project.
