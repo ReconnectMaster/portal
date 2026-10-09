@@ -319,10 +319,11 @@
 
     <script type="module">
         // Load and display all blog posts
-        import { blogPosts } from './src/data/blogData.js';
+        import { loadAllPosts } from './src/data/blog-loader.js';
 
-        function renderBlogPosts() {
+        async function renderBlogPosts() {
             try {
+                const blogPosts = await loadAllPosts();
                 const container = document.getElementById('blogContainer');
                 
                 if (!blogPosts || blogPosts.length === 0) {
