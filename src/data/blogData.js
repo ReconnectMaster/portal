@@ -13,3 +13,12 @@ export const blogPosts = [
   post3,
   post4
 ];
+
+// The "light switch panel": list the posts you want ON.
+// Each name must match a file in src/posts/ (without .json)
+export const postSlugs = [
+  'gmail-delete-rename',
+  'json-vs-javascript-differences',
+  'html-css-javascript-house-building',
+  'ai-era-automation-to-ai-agents'
+];
