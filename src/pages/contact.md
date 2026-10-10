@@ -1,1 +1,1 @@
-# Using an external source like Tally.so
+# Using Tally.so as an external source control.
