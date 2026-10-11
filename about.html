@@ -1,0 +1,490 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI & Digital Tools Portal</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Header Styles */
+        header {
+            background: white;
+            border-bottom: 1px solid #e5e5e5;
+            padding: 1.2rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #000;
+            letter-spacing: -0.5px;
+        }
+
+        .search-container {
+            display: flex;
+            align-items: center;
+            background: #f0f0f0;
+            border-radius: 6px;
+            padding: 0.6rem 1rem;
+            gap: 0.8rem;
+        }
+
+        .search-container input {
+            border: none;
+            background: transparent;
+            outline: none;
+            font-size: 0.9rem;
+            color: #666;
+            width: 180px;
+        }
+
+        .search-container input::placeholder {
+            color: #999;
+        }
+
+        .search-container button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            color: #666;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .search-container button:hover {
+            color: #333;
+        }
+
+        /* Dropdown Menu Styles */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-btn {
+            background-color: #2563eb;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            cursor: pointer;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: background-color 0.2s ease, transform 0.2s ease;
+            white-space: nowrap;
+            box-shadow: 0 2px 8px rgba(37, 99, 235, 0.2);
+        }
+
+        .dropdown-btn:hover {
+            background-color: #1d4ed8;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: white;
+            min-width: 220px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+            padding: 12px 0;
+            z-index: 101;
+            border-radius: 6px;
+            top: 100%;
+            right: 0;
+            margin-top: 8px;
+        }
+
+        .dropdown-content.show {
+            display: block;
+        }
+
+        .dropdown-content a {
+            color: #333;
+            padding: 12px 18px;
+            text-decoration: none;
+            display: block;
+            transition: all 0.2s ease;
+            border-left: 3px solid transparent;
+        }
+
+        .dropdown-content a:hover {
+            color: #2563eb;
+            background-color: #f0f7ff;
+            border-left-color: #2563eb;
+        }
+
+        /* Keep hover behavior for desktop */
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        /* Main Content */
+        main {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+            width: 100%;
+            flex: 1;
+        }
+
+        .page-title {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #000;
+            line-height: 1.1;
+        }
+
+        .page-subtitle {
+            font-size: 1rem;
+            color: #666;
+            margin-bottom: 3rem;
+            line-height: 1.6;
+        }
+
+        /* Section Styles */
+        .section {
+            margin-bottom: 4rem;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            color: #000;
+        }
+
+        /* Grid Layout */
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 0;
+        }
+
+        .tool-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 1px solid #e5e5e5;
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+
+        .tool-card:hover {
+            border-color: #d0d0d0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            transform: translateY(-2px);
+        }
+
+        .tool-name {
+            color: #2563eb;
+            font-weight: 700;
+            font-size: 1.05rem;
+            margin-bottom: 0.6rem;
+        }
+
+        .tool-name a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .tool-name a:hover {
+            text-decoration: underline;
+        }
+
+        .tool-description {
+            color: #666;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        /* Footer Styles */
+        footer {
+            background: white;
+            border-top: 1px solid #e5e5e5;
+            padding: 3rem 2rem;
+            margin-top: 4rem;
+        }
+
+        .footer-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .footer-section h3 {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #000;
+        }
+
+        .footer-section a {
+            display: block;
+            color: #666;
+            text-decoration: none;
+            font-size: 0.95rem;
+            padding: 0.5rem 0;
+            transition: color 0.2s ease;
+        }
+
+        .footer-section a:hover {
+            color: #2563eb;
+        }
+
+        .footer-bottom {
+            max-width: 1000px;
+            margin: 2rem auto 0;
+            padding-top: 2rem;
+            border-top: 1px solid #e5e5e5;
+            text-align: center;
+            color: #999;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            header {
+                padding: 1rem;
+                flex-wrap: wrap;
+                gap: 1rem;
+                justify-content: space-between;
+            }
+
+            .logo {
+                width: auto;
+            }
+
+            .search-container {
+                width: 100%;
+                order: 3;
+            }
+
+            .search-container input {
+                width: 100%;
+            }
+
+            .dropdown {
+                order: 2;
+            }
+
+            main {
+                padding: 2rem 1rem;
+            }
+
+            .page-title {
+                font-size: 2rem;
+            }
+
+            .tools-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-container {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            footer {
+                padding: 2rem 1rem;
+            }
+
+            .dropdown-content {
+                position: static;
+                box-shadow: none;
+                border-radius: 0;
+                padding: 8px 0;
+                min-width: auto;
+                margin-top: 0;
+            }
+
+            /* Remove hover behavior on mobile - but respect the .show class */
+            .dropdown:hover .dropdown-content:not(.show) {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Navigation -->
+    <header>
+        <div class="logo">AI & Digital Tools Portal</div>
+        <div class="search-container">
+            <input type="text" placeholder="Search...">
+            <button>🔍</button>
+        </div>    
+        <div class="dropdown">
+            <button class="dropdown-btn" id="dropdownBtn">📂 Jump to Category ▼</button>
+            <div class="dropdown-content" id="dropdownContent">
+                <a href="#text-generation">📝 Text Generation</a>
+                <a href="#prompt-engineering">📌 Prompt Engineering</a>
+                <a href="#image-generation">🎨 Image Generation</a>
+                <a href="#video-editing">🎬 Video Editing</a>
+                <a href="#audio">🔊 Audio & Voice</a>
+                <a href="#automation">🤖 Automation Tools</a>
+                <a href="#marketing">📊 Marketing Tools</a>
+                <a href="#graphic">🎨 Graphic Tools</a>
+                <a href="#web-app">💻 Web-App Generation</a>
+                <a href="#database">📋 Form & Database</a>
+                <a href="#presentation">📊 Presentation</a>                
+                <a href="#deployment">🌐 Deployment</a>
+            </div>        
+        </div>
+    </header>
+
+    <a href="projects.html">ℹ️ My Projects</a>
+
+    <!-- Main Content -->
+    <main>
+        <h1 class="page-title">AI Tools Directory</h1>
+        <p class="page-subtitle">A comprehensive spec of critical AI intelligence tools, grouped by category.</p>
+
+        <!-- Text Generation Section -->
+        <section id="text-generation" class="section">
+            <h2 class="section-title">📝 Text Generation</h2>
+            <div class="tools-grid">
+                <div class="tool-card">
+                    <div class="tool-name"><a href="https://chatgpt.com" target="_blank">ChatGPT</a></div>
+                    <div class="tool-description">Language model for generating indigenous text</div>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-name"><a href="https://gemini.google.com/app" target="_blank">Gemini</a></div>
+                    <div class="tool-description">Image generator using AI to create engaging ideas</div>
+                </div>
+            </div>
+        </section>
+
+        
+        <!-- Prompt Engineering Section -->
+        <section id="prompt-engineering" class="section">
+            <h2 class="section-title">📌 Prompt Engineering </h2>
+            <div class="tools-grid">
+                <div class="tool-card">
+                    <div class="tool-name"><a href="https://www.bananaprompts.xyz/" target="_blank"> Banana Prompts </a></div>
+                    <div class="tool-description">Prompt Samples</div>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-name"><a href="https://www.magnific.com/" target="_blank"> Magnific (Formerly Freepik) </a></div>
+                    <div class="tool-description">Access to the world's leading AI companies</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="Projects" class="section">
+            <h2 class="section-title">📌 Projects </h2>
+            <div class="tools-grid">
+                <div class="tool-card">
+                    <div class="tool-name"><a href="https://sidekick-omega-virid.vercel.app/" target="_blank"> Sidekick </a></div>
+                    <div class="tool-description">(Under Construction) Utility Calculator</div>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-name"><a href="https://60plus40.vercel.app/" target="_blank"> ThaiPlus 60:40 </a></div>
+                    <div class="tool-description">ThaiPlus - Calculating Assist of Govt. Economic Project - </div>
+                </div>
+            </div>
+        </section>        
+    </main>
+
+    <!-- Footer Navigation -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>Navigation</h3>
+                <a href="index.html">🏠 Home</a>
+                <a href="blog.html">📗 Blog</a>
+                <a href="#about">ℹ️ About</a>
+                <a href="https://tally.so/r/7RPg5Z">🧛‍♂️ Contact</a>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <a href="#text-generation">📝 Text Generation</a>
+                <a href="#image-generation">🎨 Image Generation</a>
+                <a href="#video-editing">🎬 Video Editing</a>
+                <a href="#audio">🔊 Audio & Voice</a>
+            </div>
+            <div class="footer-section">
+                <h3>More Resources</h3>
+                <a href="#automation">🤖 Automation</a>
+                <a href="#marketing">📊 Marketing</a>
+                <a href="#web-app">💻 Web-App</a>
+                <a href="#deployment">🌐 Deployment</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 AI & Digital Tools Portal. All rights reserved. | Designed by Reconnect Master</p>
+        </div>
+    </footer>
+
+    <script>
+        // Dropdown toggle functionality
+        const dropdownBtn = document.getElementById('dropdownBtn');
+        const dropdownContent = document.getElementById('dropdownContent');
+
+        // Toggle dropdown on button click
+        dropdownBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            dropdownContent.classList.toggle('show');
+        });
+
+        // Close dropdown when clicking on a link
+        const dropdownLinks = dropdownContent.querySelectorAll('a');
+        dropdownLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                dropdownContent.classList.remove('show');
+            });
+        });
+
+        // Close dropdown when clicking outside (on mobile and desktop)
+        document.addEventListener('click', function(e) {
+            if (!e.target.closest('.dropdown')) {
+                dropdownContent.classList.remove('show');
+            }
+        });
+
+        // Prevent closing on mobile when opening dropdown content itself
+        dropdownContent.addEventListener('click', function(e) {
+            if (e.target.tagName === 'A') {
+                dropdownContent.classList.remove('show');
+            }
+        });
+    </script>
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MCDYZG9RGF"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-MCDYZG9RGF');
+    </script>
+</body>
+</html>
