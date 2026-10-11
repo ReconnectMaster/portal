@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<title>Vanilla JS Basics</title>
+<style>
+  body { font-family: monospace, sans-serif; max-width: 700px; margin: 40px auto; line-height: 1.6; padding: 0 16px; }
+  h2 { border-bottom: 2px solid #333; margin-top: 40px; }
+  pre { background: #f4f4f4; padding: 10px; border-radius: 6px; white-space: pre-wrap; }
+  .out { color: #0a6; font-weight: bold; }
+</style>
+</head>
+<body>
+
+<h1>Vanilla JS — พื้นฐานสำหรับคนรู้ Python/JSON</h1>
+<p>เปิดไฟล์นี้ในเบราว์เซอร์ แล้วดูผลลัพธ์ในหน้าเว็บ (หรือกด F12 เปิด Console ดูก็ได้)</p>
+
+<h2>1. ตัวแปร (Variable)</h2>
+<pre id="out1"></pre>
+
+<h2>2. Data Type พื้นฐาน</h2>
+<pre id="out2"></pre>
+
+<h2>3. Array กับ Object (เหมือน JSON เลย)</h2>
+<pre id="out3"></pre>
+
+<h2>4. Function</h2>
+<pre id="out4"></pre>
+
+<h2>5. Condition &amp; Loop</h2>
+<pre id="out5"></pre>
+
+<h2>6. DOM เบื้องต้น (สิ่งที่ Python ไม่มี)</h2>
+<button id="myBtn">คลิกฉันสิ</button>
+<p id="clickResult">ยังไม่ได้คลิก</p>
+
+<script>
+// ============================================================
+// หมายเหตุ: นี่คือ Vanilla JS ล้วนๆ ไม่มี library ใดๆ ทั้งสิ้น
+// ทุกอย่างรันได้ทันทีในเบราว์เซอร์ (HTML5 standard)
+// ============================================================
+
+
+// -------------------------------------------------------------
+// 1. ตัวแปร (Variable)
+// -------------------------------------------------------------
+// Python: x = 5              -> ไม่ต้องประกาศชนิด ไม่ต้องมีคำนำหน้า
+// JS ต้องมีคำนำหน้าเสมอ: let, const, (var แบบเก่า ไม่แนะนำให้ใช้)
+
+let x = 5;          // let = ตัวแปรที่ "เปลี่ยนค่าได้" ภายหลัง
+const PI = 3.14;    // const = ค่าคงที่ "เปลี่ยนค่าไม่ได้" (เหมือนตั้งใจ lock ไว้)
+
+x = 10; // เปลี่ยนค่า x ได้ เพราะประกาศด้วย let
+// PI = 3.15; // ถ้าเปิดบรรทัดนี้จะ error ทันที เพราะ PI เป็น const
+
+document.getElementById("out1").textContent =
+  "x = " + x + "\nPI = " + PI +
+  "\n\nข้อสังเกต: JS ใช้ let/const แทนการเขียนชื่อตัวแปรเปล่าๆ แบบ Python";
+
+
+// -------------------------------------------------------------
+// 2. Data Type พื้นฐาน
+// -------------------------------------------------------------
+// Python: int, float, str, bool, None, list, dict
+// JS:     number (รวม int/float เป็นชนิดเดียว), string, boolean, null/undefined, array, object
+
+let a = 42;                 // number (ไม่แยก int/float เหมือน Python)
+let b = "สวัสดี";           // string (ใช้ " หรือ ' หรือ ` ก็ได้)
+let c = true;                // boolean (ตัวเล็กทั้งหมด ไม่ใช่ True แบบ Python)
+let d = null;                 // null = "ตั้งใจให้ไม่มีค่า" (เหมือน None ของ Python)
+let e;                        // undefined = "ยังไม่ได้กำหนดค่าเลย" (Python ไม่มีสิ่งนี้)
+
+document.getElementById("out2").textContent =
+  "typeof a = " + typeof a + "  (a=" + a + ")\n" +
+  "typeof b = " + typeof b + "  (b=" + b + ")\n" +
+  "typeof c = " + typeof c + "  (c=" + c + ")\n" +
+  "typeof d = " + typeof d + "  (d=" + d + ")  <- นี่คือ bug เก่าแก่ของ JS ที่ถือว่าปกติ\n" +
+  "typeof e = " + typeof e + "  (e=" + e + ")\n\n" +
+  "ข้อสังเกต: JS ไม่แยก int/float เหมือน Python และมี null กับ undefined แยกกัน 2 แบบ";
+
+
+// -------------------------------------------------------------
+// 3. Array กับ Object (จุดนี้คุณจะคุ้นเคยที่สุดเพราะรู้ JSON แล้ว)
+// -------------------------------------------------------------
+// Python list   -> JS Array   : [1, 2, 3]
+// Python dict   -> JS Object  : {"key": "value"}  <- หน้าตาเหมือน JSON เป๊ะ!
+
+let fruits = ["apple", "banana", "mango"]; // Array เหมือน Python list
+
+let person = {              // Object เหมือน Python dict / JSON object
+  name: "Somchai",
+  age: 25,
+  isStudent: false
+};
+
+// เข้าถึงค่าใน object: ใช้ . (dot) แทน ["key"] แบบ Python dict ก็ได้
+let personName = person.name;       // เหมือน person["name"] ก็ใช้ได้เหมือนกัน
+let firstFruit = fruits[0];         // index เริ่มจาก 0 เหมือน Python
+
+document.getElementById("out3").textContent =
+  "fruits[0] = " + firstFruit + "\n" +
+  "person.name = " + personName + "\n" +
+  "person.age  = " + person.age + "\n\n" +
+  "JSON.stringify(person):\n" + JSON.stringify(person, null, 2) + "\n\n" +
+  "ข้อสังเกต: object literal { } ของ JS คือรูปแบบเดียวกับ JSON เลย " +
+  "เพราะจริงๆ แล้ว JSON ย่อมาจาก JavaScript Object Notation";
+
+
+// -------------------------------------------------------------
+// 4. Function
+// -------------------------------------------------------------
+// Python:
+//   def add(a, b):
+//       return a + b
+
+// JS มี 2 แบบหลักๆ ที่ควรรู้จัก:
+
+// แบบที่ 1: function declaration (คล้าย def ของ Python)
+function add(a, b) {
+  return a + b;
+}
+
+// แบบที่ 2: arrow function (แบบสั้น นิยมมากในโค้ดยุคใหม่ ควรอ่านให้คล่อง)
+const multiply = (a, b) => a + b === undefined ? 0 : a * b;
+// ถ้า body มีบรรทัดเดียวและ return ค่าเดียว จะไม่ต้องเขียน { return ... } ก็ได้
+const square = (n) => n * n;
+
+document.getElementById("out4").textContent =
+  "add(3, 4) = " + add(3, 4) + "\n" +
+  "square(5) = " + square(5) + "\n\n" +
+  "ข้อสังเกต: 'const multiply = (a, b) => ...' คือรูปแบบที่พบบ่อยที่สุดในโค้ด JS " +
+  "สมัยใหม่ ให้จำหน้าตานี้ไว้เป็นพิเศษ เพราะเจอบ่อยมากเวลาอ่านโค้ดคนอื่น";
+
+
+// -------------------------------------------------------------
+// 5. Condition & Loop
+// -------------------------------------------------------------
+// Python:
+//   if x > 0:
+//       ...
+//   for item in list:
+//       ...
+
+let scores = [55, 80, 42, 91];
+let result = "";
+
+for (let score of scores) {          // "for...of" อ่านง่ายสุด คล้าย "for item in list" ของ Python
+  if (score >= 60) {
+    result += score + " -> ผ่าน\n";
+  } else {
+    result += score + " -> ไม่ผ่าน\n";
+  }
+}
+
+// อีกแบบที่เจอบ่อยมาก: .forEach() บน array (แนวคิดคล้าย list comprehension/map ของ Python)
+let doubled = [];
+scores.forEach((s) => doubled.push(s * 2));
+
+document.getElementById("out5").textContent =
+  result + "\ndoubled = [" + doubled.join(", ") + "]\n\n" +
+  "ข้อสังเกต: ใน JS ใช้ { } กำหนดขอบเขตของ block แทนการเว้นวรรค (indentation) แบบ Python " +
+  "แต่การเว้นวรรคก็ยังควรทำเพื่อความอ่านง่าย";
+
+
+// -------------------------------------------------------------
+// 6. DOM เบื้องต้น — สิ่งที่ Python ไม่มี เพราะ Python ไม่ได้รันในเบราว์เซอร์
+// -------------------------------------------------------------
+// DOM = โครงสร้างของหน้าเว็บที่ JS เข้าไป "จับ" และ "แก้ไข" ได้แบบ real-time
+
+const btn = document.getElementById("myBtn");   // หาปุ่มจาก id ใน HTML
+const resultText = document.getElementById("clickResult");
+
+let clickCount = 0;
+
+btn.addEventListener("click", function () {
+  clickCount++;
+  resultText.textContent = "คลิกไปแล้ว " + clickCount + " ครั้ง";
+});
+// ข้อสังเกต: นี่คือหัวใจของ JS ในเว็บ คือการ "ฟังเหตุการณ์" (event) แล้วสั่งให้หน้าเว็บ
+// เปลี่ยนแปลงโดยไม่ต้องโหลดหน้าใหม่ ซึ่ง Python ธรรมดาทำแบบนี้ไม่ได้เลย
+
+</script>
+
+</body>
+</html>
