@@ -7,10 +7,10 @@
 // (the other posts still show, and the browser Console (F12) tells you which one is missing).
 
 export const postSlugs = [
-  'understanding-file-paths-web-development',
-  'hero-photo-no-show',
   'ai-era-automation-to-ai-agents',  // No need comma here to specify the last one
   'json-vs-javascript-differences',
+  'understanding-file-paths-web-development',
+  'hero-photo-no-show',
   'html-css-javascript-house-building',  
   'gmail-delete-rename'
 ];
