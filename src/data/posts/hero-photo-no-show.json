@@ -5,7 +5,7 @@
   "author": "Reconnect Master",
   "image": "/public/images/posts/hero-photo-no-show/hero-photo-no-show.png",
   "description": "How to troubleshoot and fix the issue of a hero photo not displaying on your website.",
-  "tags": ["web-development", "html", "css", "troubleshooting"],
+  "tags": ["web-development", "photo-not-showing", "troubleshooting", "photo-path", "image-display"],
   "reading_time": 4,
   "content": [
     "If you're experiencing issues with your hero photo not displaying on your website, here are some common causes and solutions.",
@@ -17,7 +17,7 @@
     
     "## Check one image before changing everything",
     "Open your browser, using a real file name:",
-    "Example: https://reconnectmaster.com/public/images/posts/photo.png",
+    "Example: https://yourwebsite.com/public/images/posts/photo.png",
     "The picture should have loaded if the path above is correct.", 
     "## If it does NOT load, check these:",
     "The deploy finished. Wait a couple of minutes after pushing,",
