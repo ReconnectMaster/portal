@@ -10,5 +10,6 @@ export const postSlugs = [
   'gmail-delete-rename',
   'json-vs-javascript-differences',
   'html-css-javascript-house-building',
+  'understanding-file-paths-web-development'
   'ai-era-automation-to-ai-agents'
 ];
