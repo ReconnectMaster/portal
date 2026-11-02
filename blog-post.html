@@ -381,6 +381,13 @@
             }
 
             for (const block of blocks) {
+                // NEW: if the string is already HTML, insert it as-is
+                if (block.trim().startsWith('<')) {
+                    flushList(); flushTable();
+                    html += block;
+                    continue;
+                }
+                // Without code lines 384-389 above, HTML code cannot work properly)
                 if (block.startsWith('```')) {
                     flushList(); flushTable();
                     const code = block.replace(/^```.*\n/, '').replace(/\n?```$/, '');
