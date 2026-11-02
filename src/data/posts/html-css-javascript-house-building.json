@@ -38,12 +38,6 @@
     "- **HTML** = The structural foundation (can't have a house without it)",
     "- **CSS** = The visual design (makes it beautiful)",
     "- **JavaScript** = The interactive features (makes it functional)",
-    "All three work together to create a complete, functional, and beautiful web experience.",
-    "## Plus:",         
-    "Try a smart house app:",
-      {  
-        "text": "Open the demo",
-        "url": "/java-smart-house-app.html"
-      }
+    "All three work together to create a complete, functional, and beautiful web experience."
   ]
 }
