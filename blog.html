@@ -172,37 +172,8 @@
             border-radius: 12px;
             font-size: 0.8rem;
         }
-        /* Pagination */
-        .pagination {
-            display: flex;
-            justify-content: center;
-            gap: 0.5rem;
-            margin-top: 1rem;
-        }
-        
-        .pagination button {
-            padding: 0.5rem 0.9rem;
-            border: 1px solid #e5e5e5;
-            background: white;
-            border-radius: 6px;
-            font-size: 0.95rem;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-        
-        .pagination button:hover {
-            border-color: #2563eb;
-            color: #2563eb;
-        }
-        
-        .pagination button.active {
-            background: #2563eb;
-            border-color: #2563eb;
-            color: white;
-        }
-        
-        /*
-        (Loading & Error States) Old version: long scroll down, which replace by Pagination above
+
+        /* Loading & Error States */
         .loading {
             text-align: center;
             padding: 3rem;
@@ -218,7 +189,6 @@
             color: #c33;
             text-align: center;
         }
-        */
 
         /* Footer */
         footer {
@@ -315,7 +285,6 @@
         <div class="blog-grid" id="blogContainer">
             <div class="loading">Loading blog posts...</div>
         </div>
-        <div class="pagination" id="pagination"></div>   <!-- NEW code for multiple pages-->
     </main>
 
     <!-- Footer -->
@@ -349,67 +318,33 @@
     </footer>
 
     <script type="module">
+        // Load and display all blog posts
         import { loadAllPosts } from './src/data/blog-loader.js';
 
-        const POSTS_PER_PAGE = 6;     // NEW: change this number to show more or fewer per page
-        let blogPosts = [];           // NEW: holds all posts
-        let currentPage = 1;          // NEW: remembers which page is showing
-        
-        // NEW: shows only the posts that belong on one page
-        function showPage(page) {
-            currentPage = page;
-            const start = (page - 1) * POSTS_PER_PAGE;
-            const pagePosts = blogPosts.slice(start, start + POSTS_PER_PAGE);   // the key line
-        
-            const container = document.getElementById('blogContainer');
-            container.innerHTML = pagePosts.map(post => `
-                <a href="blog-post.html?slug=${post.slug}" class="blog-card">
-                    <img src="${post.image}" alt="${post.title}" class="blog-card-image">
-                    <div class="blog-card-content">
-                        <h3 class="blog-card-title">${post.title}</h3>
-                        <p class="blog-card-description">${post.description}</p>
-                        ${post.tags ? `<div class="blog-tags">${post.tags.map(tag => `<span class="blog-tag">${tag}</span>`).join('')}</div>` : ''}
-                        <div class="blog-card-meta">
-                            <span class="blog-card-date">${post.date}</span>
-                            ${post.reading_time ? `<span class="blog-card-reading-time">${post.reading_time} min read</span>` : ''}
-                        </div>
-                    </div>
-                </a>
-            `).join('');
-        
-            renderPagination();
-        }
-        
-        // NEW: draws the number buttons
-        function renderPagination() {
-            const nav = document.getElementById('pagination');
-            const totalPages = Math.ceil(blogPosts.length / POSTS_PER_PAGE);
-            nav.innerHTML = '';
-            if (totalPages <= 1) return;              // 6 posts or fewer: no buttons
-        
-            for (let i = 1; i <= totalPages; i++) {
-                const btn = document.createElement('button');
-                btn.textContent = i;
-                if (i === currentPage) btn.classList.add('active');
-                btn.addEventListener('click', () => {
-                    showPage(i);
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                });
-                nav.appendChild(btn);
-            }
-        }
-        
         async function renderBlogPosts() {
             try {
-                blogPosts = await loadAllPosts();      // CHANGED: no "const", it uses the shared list
+                const blogPosts = await loadAllPosts();
                 const container = document.getElementById('blogContainer');
-        
+                
                 if (!blogPosts || blogPosts.length === 0) {
                     container.innerHTML = '<div class="error">No blog posts found.</div>';
                     return;
                 }
-        
-                showPage(1);                           // CHANGED: replaces the old card-building code
+                
+                container.innerHTML = blogPosts.map(post => `
+                    <a href="blog-post.html?slug=${post.slug}" class="blog-card">
+                        <img src="${post.image}" alt="${post.title}" class="blog-card-image">
+                        <div class="blog-card-content">
+                            <h3 class="blog-card-title">${post.title}</h3>
+                            <p class="blog-card-description">${post.description}</p>
+                            ${post.tags ? `<div class="blog-tags">${post.tags.map(tag => `<span class="blog-tag">${tag}</span>`).join('')}</div>` : ''}
+                            <div class="blog-card-meta">
+                                <span class="blog-card-date">${post.date}</span>
+                                ${post.reading_time ? `<span class="blog-card-reading-time">${post.reading_time} min read</span>` : ''}
+                            </div>
+                        </div>
+                    </a>
+                `).join('');
             } catch (error) {
                 console.error('Error loading blog posts:', error);
                 document.getElementById('blogContainer').innerHTML = `
@@ -420,8 +355,8 @@
                 `;
             }
         }
-
-renderBlogPosts();
+        
+        renderBlogPosts();
     </script>
 </body>
 </html>
