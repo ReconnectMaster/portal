@@ -381,6 +381,12 @@
             }
 
             for (const block of blocks) {
+                // NEW: if the string is already HTML, insert it as-is
+                if (block.trim().startsWith('<')) {
+                    flushList(); flushTable();
+                    html += block;
+                    continue;
+                }
                 if (block.startsWith('```')) {
                     flushList(); flushTable();
                     const code = block.replace(/^```.*\n/, '').replace(/\n?```$/, '');
