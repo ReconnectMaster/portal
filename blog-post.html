@@ -387,6 +387,7 @@
                     html += block;
                     continue;
                 }
+                // Without code lines 384-389 above, HTML code cannot work properly)
                 if (block.startsWith('```')) {
                     flushList(); flushTable();
                     const code = block.replace(/^```.*\n/, '').replace(/\n?```$/, '');
