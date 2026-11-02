@@ -3,7 +3,7 @@
   "slug": "understanding-file-paths-web-development",
   "date": "November 1, 2026",
   "author": "Reconnect Master",
-  "image": "https://pixabay.com/images/download/megan_rexazin_conde-folder-5000783_1920.png",
+  "image": "/public/images/posts/file-paths-symbols.png",
   "description": "Understanding How File Path Symbols Work in Web Development",
   "tags": ["web-development", "file-path", "symbols"],
   "reading_time": 2,
