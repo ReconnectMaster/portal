@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Smart House</title>
+<style>
+  body { font-family: system-ui; background:#111; color:#eee; padding:24px; }
+  .panel { margin-bottom:16px; }
+  button { padding:8px 12px; margin-right:8px; cursor:pointer; }
+  .device { padding:6px; border-bottom:1px solid #333; }
+  .on  { color:#7CFC00; }
+  .off { color:#666; }
+  #log { background:#000; padding:12px; height:150px; overflow:auto; }
+</style>
+</head>
+<body>
+
+<h1>🏠 Smart House</h1>
+
+<div class="panel">
+  <label>Hour: <input id="clock" type="range" min="0" max="23" value="19"></label>
+  <span id="timeLabel"></span>
+</div>
+<div class="panel">
+  <button id="doorBtn">Toggle Front Door</button>
+  <button id="motionBtn">Toggle Motion Sensor</button>
+</div>
+
+<div id="devices"></div>
+<pre id="log"></pre>
+
+<script>
+// ---------- 1. THE STATE: what the house knows right now ----------
+const house = {
+  hour: 19,
+  doorOpen: false,
+  motion: false,
+  devices: {
+    porchLight:  false,
+    livingLight: false,
+    tv:          false,
+    radio:       false,
+    ac:          false
+  }
+};
+
+// ---------- 2. HELPERS ----------
+function isNight(hour) {
+  return hour >= 18 || hour < 6;
+}
+
+function between(hour, start, end) {
+  return hour >= start && hour <= end;
+}
+
+// ---------- 3. THE RULES: the "brain" of the house ----------
+const rules = [
+  {
+    name: "Night entry lighting",
+    when: (h) => h.doorOpen && isNight(h.hour),
+    then: (h) => { h.devices.porchLight = true; h.devices.livingLight = true; }
+  },
+  {
+    name: "Evening welcome TV",
+    when: (h) => h.motion && between(h.hour, 17, 22),
+    then: (h) => { h.devices.tv = true; }
+  },
+  {
+    name: "Morning radio",
+    when: (h) => h.motion && between(h.hour, 6, 9),
+    then: (h) => { h.devices.radio = true; h.devices.livingLight = true; }
+  },
+  {
+    name: "Afternoon cooling",
+    when: (h) => between(h.hour, 12, 16) && h.motion,
+    then: (h) => { h.devices.ac = true; }
+  }
+];
+
+// ---------- 4. THE ENGINE: recalculate every device from scratch ----------
+function update() {
+  const before = { ...house.devices };          // snapshot for logging
+
+  for (const key in house.devices) {
+    house.devices[key] = false;                 // reset everything
+  }
+
+  for (const rule of rules) {
+    if (rule.when(house)) {
+      rule.then(house);
+      log("⚙️ rule fired: " + rule.name);
+    }
+  }
+
+  for (const key in house.devices) {
+    if (before[key] !== house.devices[key]) {
+      log(`   ${key} → ${house.devices[key] ? "ON" : "OFF"}`);
+    }
+  }
+
+  render();
+}
+
+// ---------- 5. THE SCREEN ----------
+function render() {
+  const box = document.getElementById("devices");
+  box.innerHTML = "";
+
+  for (const key in house.devices) {
+    const isOn = house.devices[key];
+    const row = document.createElement("div");
+    row.className = "device " + (isOn ? "on" : "off");
+    row.textContent = `${isOn ? "🟢" : "⚫"} ${key}: ${isOn ? "ON" : "OFF"}`;
+    box.appendChild(row);
+  }
+
+  document.getElementById("timeLabel").textContent =
+    `${String(house.hour).padStart(2, "0")}:00 ` +
+    `${isNight(house.hour) ? "🌙" : "☀️"} | ` +
+    `door: ${house.doorOpen ? "OPEN" : "closed"} | ` +
+    `motion: ${house.motion ? "YES" : "no"}`;
+}
+
+function log(msg) {
+  const el = document.getElementById("log");
+  el.textContent += msg + "\n";
+  el.scrollTop = el.scrollHeight;
+}
+
+// ---------- 6. THE SENSORS (user input) ----------
+document.getElementById("doorBtn").addEventListener("click", function () {
+  house.doorOpen = !house.doorOpen;
+  log(house.doorOpen ? "🚪 Door OPENED" : "🚪 Door closed");
+  update();
+});
+
+document.getElementById("motionBtn").addEventListener("click", function () {
+  house.motion = !house.motion;
+  log(house.motion ? "👤 Motion detected" : "👤 Room empty");
+  update();
+});
+
+document.getElementById("clock").addEventListener("input", function (event) {
+  house.hour = Number(event.target.value);
+  update();
+});
+
+update(); // kick everything off
+</script>
+</body>
+</html>
