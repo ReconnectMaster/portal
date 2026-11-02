@@ -1,0 +1,62 @@
+{
+  "slug": "hero-photo-no-show",
+  "title": "How To Fix Hero Photo Not Showing on Your Website",
+  "date": "November 2, 2026",
+  "author": "Reconnect Master",
+  "image": "/public/images/posts/hero-photo-no-show/hero-photo-no-show.png",
+  "description": "How to troubleshoot and fix the issue of a hero photo not displaying on your website.",
+  "tags": ["web-development", "html", "css", "troubleshooting"],
+  "reading_time": 4,
+  "content": [
+    "If you're experiencing issues with your hero photo not displaying on your website, here are some common causes and solutions.",
+    "## Common Causes",
+    "1. **Incorrect Image Path**: The most common issue is an incorrect file path to the image.",
+    "2. **Image File Not Found**: The image file might be missing or moved.",
+    "3. **CSS Styling Issues**: CSS rules might be hiding the image or affecting its display.",
+    "4. **Server Configuration**: Some server configurations might block certain image types or locations.",
+    
+    "## Check one image before changing everything",
+    "Open your browser, using a real file name:",
+    "Example: https://reconnectmaster.com/public/images/posts/photo.png",
+    "The picture should have loaded if the path above is correct.", 
+    "## If it does NOT load, check these:",
+    "The deploy finished. Wait a couple of minutes after pushing,",
+    "then hard refresh with **Ctrl + F5**.",
+    "The file name matches exactly. **GitHub Pages is case-sensitive**, go check that Photo.png, and photo.png are different files. Also are .png and .jpg.",
+    "The image was pushed. Look for it in your repository on GitHub, since an image that only exists on your computer won’t show.",
+    "## Alternative:", 
+    "Move **images/** out of **public/** to the root of the project", 
+    "and keep **/images/posts/photo.png** in the JSON.",
+    "Both approaches work, so pick one and stay consistent.",
+
+    "## Troubleshooting Steps",
+    "### 1. Check the Image Path",
+    "Ensure the image path in your HTML is correct:",
+    "```html\n<img src=\"/images/hero.jpg\" alt=\"Hero Image\">\n```",
+    "### 2. Verify Image File Existence",
+    "Make sure the image file exists at the specified location and has the correct name and extension.",
+    "### 3. Inspect CSS Styles",
+    "Use browser developer tools to inspect the image element and check if any CSS rules are hiding it or affecting its display.",
+    "### 4. Test Server Configuration",
+    "If you're using a CMS or a custom server setup, ensure that the server is configured to serve image files correctly.",
+
+    "## Other Cases:",
+    " For example, if you have a file named **photo.png** in a folder **public/images/posts/**, then", 
+    "Your images are in:",
+    "```json\n\"/public/images/posts/photo.png\"\n```",
+    "Instead of:",
+    "```json\n/images/posts/photo.png\n```",
+    "which would show a **broken image**.",
+    "That shortcut belongs to build tools and frameworks like: **Astro, Vite, Next.js and similar**", 
+    "which copy the contents of public/ to the top of the website when they build it.", 
+    "However, if your site is plain HTML hosting such as GitHub Pages does no building",
+    "The real address of each image still includes **public**.",
+     
+    "### The fix: add **public** to the path in each JSON file",
+
+    "```json\n\"image\": \"/public/images/posts/photo.png\"\n```",
+
+    "This works on the live site and in **Live Server**, so your local preview will match.",
+        "If the above steps do not resolve the issue, consider checking for browser caching issues."
+  ]
+}
