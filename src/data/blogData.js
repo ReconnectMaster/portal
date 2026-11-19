@@ -11,7 +11,7 @@ export const postSlugs = [
   'json-vs-javascript-differences',
   'understanding-file-paths-web-development',
   'hero-photo-no-show',
-  'everything_vs_windows_search',
+  'everything-vs-windows-search',
   'html-css-javascript-house-building',  
   'gmail-delete-rename'  // No need comma here to specify the last one
 ];
