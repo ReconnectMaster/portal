@@ -355,19 +355,33 @@
                 .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
         }
 
+        // NEW: builds an HTML table from a {"format": "table", "columns": [...], "rows": [...]} block
+        function renderObjectTable(block) {
+        const columns = block.columns || [];
+        const rows = block.rows || [];
+        return '<div style="overflow-x:auto"><table><thead><tr>'
+            + columns.map(c => `<th>${inline(String(c))}</th>`).join('')
+            + '</tr></thead><tbody>'
+            + rows.map(r => '<tr>' + columns.map((c, i) => {
+                const cell = Array.isArray(r) ? r[i] : r[c];
+                return `<td>${inline(String(cell ?? ''))}</td>`;
+            }).join('') + '</tr>').join('')
+            + '</tbody></table></div>';
+        }
+
         // Turns the "content" list from the JSON file into HTML
         function renderContent(blocks) {
             let html = '';
             let listItems = [];
             let tableRows = [];
-
+        
             function flushList() {
                 if (listItems.length) {
                     html += '<ul>' + listItems.map(i => `<li>${inline(i)}</li>`).join('') + '</ul>';
                     listItems = [];
                 }
             }
-
+        
             function flushTable() {
                 if (tableRows.length) {
                     const [head, ...body] = tableRows;
@@ -379,16 +393,22 @@
                     tableRows = [];
                 }
             }
-
+        
             for (const block of blocks) {
-                // NEW: if the string is already HTML, insert it as-is
+                // NEW: if the block is a table object, build the table and move on
+                if (typeof block === 'object' && block !== null && block.format === 'table') {
+                    flushList(); flushTable();
+                    html += renderObjectTable(block);
+                    continue;
+                }
+        
+                // If the string is already HTML, insert it as-is
                 if (block.trim().startsWith('<')) {
                     flushList(); flushTable();
                     html += block;
                     continue;
                 }
-                
-                // Without code lines 384-389 above, HTML code cannot work properly)
+        
                 if (block.startsWith('```')) {
                     flushList(); flushTable();
                     const code = block.replace(/^```.*\n/, '').replace(/\n?```$/, '');
