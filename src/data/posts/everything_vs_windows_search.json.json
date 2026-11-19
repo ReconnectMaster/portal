@@ -1,6 +1,7 @@
 {
   "title": "Everything vs. Windows Search: What Makes Everything Distinct",
   "summary": "Everything’s standout advantage is instant, system-wide filename search. Windows Search is broader and better for finding text inside documents, apps, settings, and web results, but Everything is much faster and more precise when you know roughly what a file is called.",
+  "image": "/public/images/posts/everything-local-search-engine/everything-vs-windows-search.jpg",
   "what_makes_it_distinct": {
     "format": "table",
     "columns": ["Feature", "Everything", "Windows Search"],
