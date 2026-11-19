@@ -13,5 +13,5 @@ export const postSlugs = [
   'hero-photo-no-show',
   'everything-vs-windows-search',
   'html-css-javascript-house-building',  
-  'gmail-delete-rename'  // No need comma here to specify the last one
+  'gmail-delete-rename'    // No need comma here to specify the last one
 ];
