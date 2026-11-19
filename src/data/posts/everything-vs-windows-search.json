@@ -1,91 +1,66 @@
 {
   "slug": "everything-vs-windows-search",
+  "title": "Everything vs. Windows Search: What Makes Everything Distinct",
   "date": "November 19, 2026",
   "author": "Reconnect Master",
-  "title": "Everything vs. Windows Search: What Makes Everything Distinct",
   "image": "/public/images/posts/everything-local-search-engine/everything-vs-windows-search.png",
-  "summary": "Everything’s standout advantage is instant, system-wide filename search. Windows Search is broader and better for finding text inside documents, apps, settings, and web results, but Everything is much faster and more precise when you know roughly what a file is called.",
+  "description": "Everything’s standout advantage is instant, system-wide filename search. Windows Search is broader and better for finding text inside documents, apps, settings, and web results, but Everything is much faster and more precise when you know roughly what a file is called.",
   "tags": ["windows-search", "file-search", "local-file-search"],
   "reading_time": 4,
-  "content": {
-    "what_makes_it_distinct": {
-    "format": "table",
-    "columns": ["Feature", "Everything", "Windows Search"],
-    "rows": [
-          {
-            "Feature": "Search speed",
-            "Everything": "Results update as you type; it indexes filenames in seconds, even for roughly one million files.",
-            "Windows Search": "Usually slower, especially on first indexing or when searching file contents."
-          },
-          {
-            "Feature": "Scope",
-            "Everything": "Shows every file and folder on indexed local NTFS drives, then narrows as you type.",
-            "Windows Search": "Curates results across files, apps, settings, web suggestions, and sometimes email/cloud content."
-          },
-          {
-            "Feature": "Filename search",
-            "Everything": "Exceptionally strong: partial names, wildcards, paths, extensions, and Boolean logic.",
-            "Windows Search": "Good for common searches, but less flexible for complex filename patterns."
-          },
-          {
-            "Feature": "Advanced filters",
-            "Everything": "Supports filters such as size:>100mb, date-modified:today, extensions, paths, duplicates, and regular expressions.",
-            "Windows Search": "Has filters, but they are generally less granular and less keyboard-oriented."
-          },
-          {
-            "Feature": "Resource use",
-            "Everything": "Very lightweight: about 35 MB RAM and under 14 MB disk for roughly 250,000 files.",
-            "Windows Search": "Index can be larger and background indexing can use more system resources."
-          },
-          {
-            "Feature": "Real-time updates",
-            "Everything": "Uses the NTFS USN Journal, so renamed, added, or deleted files appear in results immediately; changes are not missed after restarts.",
-            "Windows Search": "Index updates can lag behind filesystem changes."
-          },
-          {
-            "Feature": "Content search",
-            "Everything": "Possible, but not indexed, so it can be slow; best combined with extension/path/date filters.",
-            "Windows Search": "Better integrated for searching text inside common document types."
-          },
-          {
-            "Feature": "Privacy/offline",
-            "Everything": "Runs entirely offline with no telemetry or user-data collection, according to voidtools.",
-            "Windows Search": "May integrate with cloud, Microsoft account, and online suggestions depending on settings."
-          }
-      ]
-      },
-      "best_examples": [
-        "Type “invoice” and instantly see every file or folder with “invoice” anywhere in its name.",
-        "Type “*.pdf” to list all PDFs, or “C:\\Projects\\” to limit results to that folder.",
-        "Use “size:>100mb date-modified:today” to find large files changed today.",
-        "Use “report !draft” to find items containing “report” while excluding “draft.”"
-      ],
-      "when_windows_search_wins": "Use the Windows search bar when you want to launch an app, change a setting, search the web, or find a phrase inside a document. Use Everything when you need to locate a file by its name, extension, location, size, date, or a complex naming pattern—especially across a large local drive.",
-      "bottom_line": "Everything is a power tool for filenames; Windows Search is a general-purpose launcher and content-search tool.",
-      "credits": {
-        "primary_sources": [
-          {
-            "name": "voidtools — Everything FAQ",
-            "url": "https://www.voidtools.com/en-us/faq/",
-            "used_for": "Instant filename search, indexing speed, resource use, NTFS USN Journal behavior, content-search limitations, and Boolean search behavior."
-          },
-          {
-            "name": "voidtools — Searching in Everything",
-            "url": "https://www.voidtools.com/support/everything/searching/",
-            "used_for": "Search-box behavior, partial-filename matching, and filter examples."
-          },
-          {
-            "name": "voidtools — Using Everything",
-            "url": "https://www.voidtools.com/support/everything/using_everything/",
-            "used_for": "Automatic NTFS-volume indexing when Everything is first run."
-          },
-          {
-            "name": "voidtools — Everything Features",
-            "url": "https://mail.voidtools.com/support/everything/",
-            "used_for": "Small installation, clean interface, fast indexing, instant filename searching, and offline/no-telemetry claims."
-          }
-        ],
-        "citation_note": "The factual claims in this JSON are based on the official voidtools documentation and FAQ listed above."
-      }
-    }      
+  "content": [
+    "Everything’s standout advantage is instant, system-wide filename search. Windows Search is broader and better for finding text inside documents, apps, settings, and web results, but Everything is much faster and more precise when you know roughly what a file is called.",
+
+    "## What Makes Everything Distinct",
+
+    "### Search speed",
+    "**Everything:** Results update as you type; it indexes filenames in seconds, even for roughly one million files.",
+    "**Windows Search:** Usually slower, especially on first indexing or when searching file contents.",
+
+    "### Scope",
+    "**Everything:** Shows every file and folder on indexed local NTFS drives, then narrows as you type.",
+    "**Windows Search:** Curates results across files, apps, settings, web suggestions, and sometimes email/cloud content.",
+
+    "### Filename search",
+    "**Everything:** Exceptionally strong: partial names, wildcards, paths, extensions, and Boolean logic.",
+    "**Windows Search:** Good for common searches, but less flexible for complex filename patterns.",
+
+    "### Advanced filters",
+    "**Everything:** Supports filters such as size:>100mb, date-modified:today, extensions, paths, duplicates, and regular expressions.",
+    "**Windows Search:** Has filters, but they are generally less granular and less keyboard-oriented.",
+
+    "### Resource use",
+    "**Everything:** Very lightweight: about 35 MB RAM and under 14 MB disk for roughly 250,000 files.",
+    "**Windows Search:** Index can be larger and background indexing can use more system resources.",
+
+    "### Real-time updates",
+    "**Everything:** Uses the NTFS USN Journal, so renamed, added, or deleted files appear in results immediately; changes are not missed after restarts.",
+    "**Windows Search:** Index updates can lag behind filesystem changes.",
+
+    "### Content search",
+    "**Everything:** Possible, but not indexed, so it can be slow; best combined with extension/path/date filters.",
+    "**Windows Search:** Better integrated for searching text inside common document types.",
+
+    "### Privacy and offline use",
+    "**Everything:** Runs entirely offline with no telemetry or user-data collection, according to voidtools.",
+    "**Windows Search:** May integrate with cloud, Microsoft account, and online suggestions depending on settings.",
+
+    "## Best Examples",
+    "Type **invoice** and instantly see every file or folder with “invoice” anywhere in its name.",
+    "Type **\\*.pdf** to list all PDFs, or **C:\\\\Projects\\\\** to limit results to that folder.",
+    "Use **size:>100mb date-modified:today** to find large files changed today.",
+    "Use **report !draft** to find items containing “report” while excluding “draft.”",
+
+    "## When Windows Search Wins",
+    "Use the Windows search bar when you want to launch an app, change a setting, search the web, or find a phrase inside a document. Use Everything when you need to locate a file by its name, extension, location, size, date, or a complex naming pattern, especially across a large local drive.",
+
+    "## Bottom Line",
+    "Everything is a power tool for filenames; Windows Search is a general-purpose launcher and content-search tool.",
+
+    "## Sources",
+    "The factual claims in this post are based on the official voidtools documentation and FAQ:",
+    "voidtools, Everything FAQ: https://www.voidtools.com/en-us/faq/",
+    "voidtools, Searching in Everything: https://www.voidtools.com/support/everything/searching/",
+    "voidtools, Using Everything: https://www.voidtools.com/support/everything/using_everything/",
+    "voidtools, Everything Features: https://mail.voidtools.com/support/everything/"
+  ]
 }
