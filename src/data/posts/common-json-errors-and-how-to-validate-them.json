@@ -1,5 +1,11 @@
 {
+  "slug": "common-json-errors-and-how-to-validate-them.json",
   "title": "Common JSON Errors and How to Validate Them",
+  "date": "August 25, 2026",
+  "author": "Reconnect Master",
+  "image": "https://images.pexels.com//photo/a-person-holding-a-paper-11035481/",
+  "description": "Clarifying the confusion between JSON and JavaScript—they're related but fundamentally different.",
+  "tags": ["json", "json-error", "json-validate", "json-common-mistakes", "programming"],
   "description": "A beginner-friendly guide to common JSON syntax errors, validation methods, their limitations, and useful terminal commands for different operating systems.",
   "content": [
     {
