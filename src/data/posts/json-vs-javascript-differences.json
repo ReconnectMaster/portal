@@ -46,8 +46,8 @@
     "- **JavaScript** = Language that does things",
     "- **JSON** = Format for storing data",
     "- JSON lives inside JavaScript, not the other way around",
-    "---",
-    "# How to add links to your blog post", 
+    "<hr>",
+    "# Tip: How to add links to your blog post", 
     "### 1. In HTML",
     "<p>You do <strong>not</strong> need a backslash before double quotes.</p>",
     "```html\n<a href=\"https://jsonlint.com/\" target=\"_blank\">JSONLint</a>\n```",
@@ -64,8 +64,12 @@
     "```javascript\nconst text = 'She said \"Hello\"';\n```",
     "**Using backticks:**",
     "```javascript\nconst text = `She said \"Hello\"`;\n```",
-    "### Quick reference",
-    "| Context | Escape `\"` with `\\`? |\n|---|---|\n| HTML attributes | No |\n| JSON string values | Yes, if inside the string |\n| JavaScript double-quoted strings | Yes, if inside the string |\n| JavaScript single-quoted strings | No |\n| JavaScript template literals | No |",
+    "### Quick reference:",
+    "- **HTML attributes:** No escaping required.",
+    "- **JSON string values:** Escape double quotes with `\\` when they appear inside a string.",
+    "- **JavaScript double-quoted strings:** Escape double quotes with `\\` when they appear inside a string.",
+    "- **JavaScript single-quoted strings:** No escaping required.",
+    "- **JavaScript template literals:** No escaping required.",
     "**Key takeaway:** Backslashes are used to escape special characters when the syntax requires it. They are not universally required before double quotes."
   ]
 }
