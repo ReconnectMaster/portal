@@ -26,7 +26,7 @@
 
     "### JSON Validator",
 
-    "<p>Tools such as [link text](<a href=\"https://jsonlint.com/\">JSONLint</a>) check whether JSON follows the correct syntax rules. They identify errors and indicate their locations, such as line and column numbers.</p>",
+    "<p>Tools such as <a href=\"https://jsonlint.com/\">JSONLint</a> check whether JSON follows the correct syntax rules. They identify errors and indicate their locations, such as line and column numbers.</p>",
 
     "<p>This is useful when validating JSON files online or when a code editor such as VS Code is unavailable.</p>",
 
