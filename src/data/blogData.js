@@ -8,7 +8,7 @@
 
 export const postSlugs = [
   'ai-era-automation-to-ai-agents',
-  'common-json-errors-and-how-to-validate-them.json',
+  'common-json-errors-and-how-to-validate-them',
   'json-vs-javascript-differences',
   'understanding-file-paths-web-development',
   'hero-photo-no-show',
