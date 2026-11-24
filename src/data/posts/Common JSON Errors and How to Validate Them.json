@@ -1,0 +1,81 @@
+{
+  "title": "Common JSON Errors and How to Validate Them",
+  "description": "A beginner-friendly guide to common JSON syntax errors, validation methods, their limitations, and useful terminal commands for different operating systems.",
+  "content": [
+    {
+      "heading": "1. Common JSON Errors",
+      "paragraph": "JSON is a data format with strict syntax rules. Even a small mistake can prevent a website from reading or loading the data correctly. Here are some common errors beginners may encounter:",
+      "list": [
+        {
+          "term": "Incorrect Quotation Marks",
+          "description": "JSON requires Double Quotes (\") for both Keys and String Values. Single Quotes (') are not allowed."
+        },
+        {
+          "term": "Trailing Comma",
+          "description": "Do not add a comma after the last item before closing an Object (}) or Array (])."
+        },
+        {
+          "term": "Missing Comma",
+          "description": "Forgetting to add a comma (,) between data items will cause a syntax error."
+        },
+        {
+          "term": "Using Comments",
+          "description": "Standard JSON does not support comments such as // or /* */."
+        }
+      ]
+    },
+    {
+      "heading": "2. Ways to Validate JSON",
+      "paragraph": "There are two main ways to check whether your JSON code is valid:",
+      "methods": [
+        {
+          "name": "JSON Validator",
+          "description": "Tools such as JSONLint help check whether JSON follows the correct syntax rules. They identify errors and indicate their locations, such as the line and column numbers.",
+          "use_case": "Useful for validating JSON files online or when a code editor such as VS Code is unavailable.",
+          "link": "https://jsonlint.com/"
+        },
+        {
+          "name": "Code Editor (VS Code)",
+          "description": "VS Code has a built-in JSON validation feature. It highlights syntax errors with red squiggly lines and displays error messages as you write.",
+          "additional_feature": "You can also view all detected errors in the Problems panel.",
+          "commands": {
+            "Windows/Linux": "Ctrl + Shift + M",
+            "macOS": "Cmd + Shift + M"
+          }
+        }
+      ]
+    },
+    {
+      "heading": "3. Limitations of JSON Validator",
+      "paragraph": "A JSON Validator checks only the structure and syntax according to JSON rules. It cannot determine whether a Key is spelled correctly or matches the requirements of the JavaScript code that uses the data.",
+      "example": {
+        "incorrect_key": "titel",
+        "expected_key": "title",
+        "explanation": "The Key \"titel\" is still valid JSON because its syntax is correct. However, the website may fail to retrieve the data if JavaScript expects a Key named \"title\"."
+      },
+      "conclusion": "Therefore, if you want to verify both data accuracy and compatibility with your application, you need to check the code further rather than relying on a JSON Validator alone."
+    },
+    {
+      "heading": "4. Useful Commands for JSON Validation",
+      "paragraph": "Besides online validators and code editors, you can also validate JSON through the Terminal using Python, which includes a built-in JSON validation tool.",
+      "instruction": "Open your Terminal and run the following command:",
+      "commands": [
+        {
+          "operating_system": "Windows",
+          "command": "python -m json.tool data.json"
+        },
+        {
+          "operating_system": "macOS",
+          "command": "python3 -m json.tool data.json"
+        },
+        {
+          "operating_system": "Linux",
+          "command": "python3 -m json.tool data.json"
+        }
+      ],
+      "explanation": "Replace data.json with the name of the file you want to validate. If the JSON is valid, the command displays the data in a properly formatted structure. If an error is found, it reports the location of the problem.",
+      "tip": "If you work with JSON regularly, VS Code is the most convenient option for checking syntax while writing. JSONLint is useful when you need to validate files online. Avoid submitting private information or API Keys to public validation websites."
+    }
+  ],
+  "note": "The python and python3 commands may vary depending on how Python is installed on your operating system."
+}
